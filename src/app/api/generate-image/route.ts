@@ -1,14 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
-import fs from "fs";
 
 export async function POST(req: NextRequest) {
   try {
     const { prompt } = await req.json();
-    const mockImagePath = "C:/Users/VINAY/.gemini/antigravity/brain/64362f60-0ce5-43d8-b828-5ca9203b8c18/mock_generated_image_1776320633123.png";
-    const buffer = fs.readFileSync(mockImagePath);
-    const base64Image = buffer.toString("base64");
-    return NextResponse.json({ imageUrl: `data:image/png;base64,${base64Image}` });
+
+    if (!prompt) {
+      return NextResponse.json({ error: "Prompt is required" }, { status: 400 });
+    }
+
+    const token = process.env.HUGGING_FACE_TOKEN;
+    if (!token) {
+      return NextResponse.json({ error: "Hugging Face token not configured" }, { status: 500 });
+    }
+
+    // Using SDXL for high quality
+    const model = "stabilityai/stable-diffusion-xl-base-1.0";
+    const response = await fetch(
+      `https://api-inference.huggingface.co/models/${model}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          inputs: prompt,
+          parameters: {
+            negative_prompt: "blurry, distorted, low quality, text, watermark",
+          }
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Hugging Face API error");
+    }
+
+    const blob = await response.blob();
+    const buffer = await blob.arrayBuffer();
+    const base64Image = Buffer.from(buffer).toString("base64");
+
+    return NextResponse.json({ 
+      imageUrl: `data:image/png;base64,${base64Image}` 
+    });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("Generation Error:", error);
+    return NextResponse.json({ error: error.message || "Failed to generate image" }, { status: 500 });
   }
 }

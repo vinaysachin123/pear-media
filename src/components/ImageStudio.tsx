@@ -79,46 +79,34 @@ export default function ImageStudio() {
         </h3>
         
         {!previewUrl ? (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
-            <div 
-              onClick={() => fileInputRef.current?.click()}
-              style={{
-                width: '100%',
-                height: '240px',
-                border: '2px dashed var(--glass-border)',
-                borderRadius: '24px',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                gap: '12px',
-                background: 'var(--glass-bg)'
-              }}
-              onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary-glow)'}
-              onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
-            >
-              <Upload size={40} color="var(--text-muted)" />
-              <p style={{ color: 'var(--text-muted)' }}>Click or drag to upload source image</p>
-              <input 
-                type="file" 
-                ref={fileInputRef} 
-                onChange={handleFileChange} 
-                accept="image/*" 
-                style={{ display: 'none' }} 
-              />
-            </div>
-            <button 
-              onClick={() => {
-                setPreviewUrl('https://images.unsplash.com/photo-1605142859862-978be7eba909?auto=format&fit=crop&q=80&w=1000');
-                setSelectedImage(new File([], 'demo.jpg'));
-              }}
-              className="secondary-button"
-              style={{ width: 'fit-content', margin: '0 auto', fontSize: '14px', opacity: 0.8 }}
-            >
-              Try with Demo Image
-            </button>
+          <div 
+            onClick={() => fileInputRef.current?.click()}
+            style={{
+              width: '100%',
+              height: '240px',
+              border: '2px dashed var(--glass-border)',
+              borderRadius: '24px',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              gap: '12px',
+              background: 'var(--glass-bg)'
+            }}
+            onMouseOver={(e) => e.currentTarget.style.borderColor = 'var(--primary-glow)'}
+            onMouseOut={(e) => e.currentTarget.style.borderColor = 'var(--glass-border)'}
+          >
+            <Upload size={40} color="var(--text-muted)" />
+            <p style={{ color: 'var(--text-muted)' }}>Click or drag to upload source image</p>
+            <input 
+              type="file" 
+              ref={fileInputRef} 
+              onChange={handleFileChange} 
+              accept="image/*" 
+              style={{ display: 'none' }} 
+            />
           </div>
         ) : (
           <div style={{ position: 'relative' }}>
