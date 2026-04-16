@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pear Media - Project Demo</title>
+    <style>
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            width: 100%;
+        }
+        h1 {
+            color: #c1ff72;
+            font-size: 42px;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        p.subtitle {
+            color: #a0a0a0;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .section {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 24px;
+            padding: 32px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        video, img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+            margin-top: 16px;
+            border: 1px solid #444;
+        }
+        .badge {
+            background: rgba(193, 255, 114, 0.1);
+            color: #c1ff72;
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .footer {
+            margin-top: 60px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pear Media</h1>
+        <p class="subtitle">Assignment: Multmodal Content Studio Demo</p>
+
+        <div class="section">
+            <h2><span class="badge">Demo Video</span> Full Flow Execution</h2>
+            <p>This video demonstrates the complete end-to-end workflow: Text Input → AI Enhancement → Approved Image Generation → Image Studio Switch → Analysis → Variation.</p>
+            <video controls autoplay loop muted>
+                <source src="public/screenshots/ultimate_demo.webp" type="video/webp">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+
+        <div class="section">
+            <h2><span class="badge">Screenshot</span> Dashboard Transformation</h2>
+            <p>A high-fidelity capture of the final generated output rendered inside the custom Pear Media dashboard.</p>
+            <img src="public/screenshots/variation_output.png" alt="Transformation Output">
+        </div>
+
+        <div class="footer">
+            &copy; 2026 Pear Media Engine. Pushed to GitHub: vinaysachin123/pear-media
+        </div>
+    </div>
+</body>
+</html>
