@@ -1,6 +1,4 @@
-'use client';
-
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Upload, ImageIcon, Loader2, Wand2, RefreshCw, ScanSearch as Analysis, CircleHelp as HelpCircle } from 'lucide-react';
 
@@ -13,6 +11,15 @@ export default function ImageStudio() {
   const [variationImage, setVariationImage] = useState('');
   const [error, setError] = useState('');
   
+  useEffect(() => {
+    // AUTO-LOAD FOR DEMO URL PARAM (?demo=1)
+    if (typeof window !== 'undefined' && window.location.search.includes('demo=1')) {
+      const demoUrl = 'https://picsum.photos/seed/pear/800/600';
+      setPreviewUrl(demoUrl);
+      setSelectedImage(new File([], 'demo.jpg', { type: 'image/jpeg' }));
+    }
+  }, []);
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
