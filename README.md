@@ -14,6 +14,19 @@ Upload any image, and Pear Media's vision engine will deconstruct its style, the
 
 - **Flow**: Image Upload → Vision Analysis → AI Description → Variation Generation.
 
+## 📸 Screenshots & Demo
+
+### 🎥 Execution Video
+A full demonstration of the end-to-end workflow (Text Enhance → Image Generation) is available in the repository:
+[Download Full Demo Recording](./public/screenshots/full_demo.webp)
+
+![Full Flow Demo Recording](./public/screenshots/full_demo.webp)
+
+### 🎨 Visual Studio
+The platform's high-fidelity dashboard in action.
+
+![Visual Studio](./public/screenshots/output.png)
+
 ## 🛠️ Tech Stack
 
 - **Frontend**: Next.js 15 (App Router), React, Framer Motion (Animations).
